@@ -1,7 +1,7 @@
 GET http://localhost:8080/api/companies
 
 ###
-GET http://localhost:8080/api/companies/67b3b32f3da84feb7278cca7
+GET http://localhost:8080/api/companies/67b47153b03ab21750f5aadd
 
 ###
 POST http://localhost:8080/api/companies HTTP/1.1
