@@ -63,14 +63,15 @@ app.get("/api/companies/:id", (request, response) => {
 // route for creating a single company
 app.post("/api/companies", (request, response) => {
     // verify the request contains a body
-    if (!request.body) {
+    const body = request.body
+    if (!body || body === undefined) {
         // if no body is present, return a 400 response (bad request)
         return response.status(400).json({
-            error: "content missing",
+            error: "missing body content",
         });
     }
     // if body is found, create the new company object
-    let company = request.body;
+    let company = body;
 
     // find the highest id in the companies array
     const companyIds = companies.map((c) => c.id);
