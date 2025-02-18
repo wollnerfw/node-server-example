@@ -10,17 +10,17 @@ app.use(express.json())
 // initialize sample company data object
 let companies = [
     {
-        id: "1",
+        id: 1,
         name: "Alpha",
         size: 150,
     },
     {
-        id: "2",
+        id: 2,
         name: "Bravo",
         size: 160,
     },
     {
-        id: "3",
+        id: 3,
         name: "Charlie",
         size: 170,
     },
