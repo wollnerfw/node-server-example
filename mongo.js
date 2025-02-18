@@ -46,8 +46,10 @@ app.get('/api/companies/:id', (request, response) => {
     Company.findById(request.params.id)
         .then(company => {
             if (company) {
+                // when the company is found, return object as json
                 response.json(company)
             } else {
+                // when the company is found, return 404 response (no found)
                 response.status(404).end()
             }
         })
@@ -64,7 +66,7 @@ app.post('/api/companies', (request, response) => {
         // if no body is present, return a 400 response (bad request)
         return response.status(400).json({
             error: "missing body content",
-        });
+        })
     }
 
     // if body is found, create the new company object
@@ -73,8 +75,9 @@ app.post('/api/companies', (request, response) => {
         size: body.size
     })
 
-    // return newly created company as json
+    // save new company to db
     company.save().then(savedCompany => {
+        // return newly created company as json
         response.json(savedCompany)
     })
 })
@@ -85,17 +88,21 @@ app.delete('/api/companies/:id', (request, response, next) => {
     Company.findByIdAndDelete(request.params.id)
         .then(company => {
             if (company) {
+                // when the company is found, return 204 response (no content)
                 response.status(204).end()
             } else {
+                // when the company is found, return 404 response (no found)
                 response.status(404).end()
             }
         })
         .catch(error => {
+            // catch errors and return 400 response (bad request)
             response.status(400).send(error.message)
         })
 })
 
-const PORT = process.env.PORT;
+// pull the port from the environment variable
+const PORT = process.env.PORT
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)
 })
